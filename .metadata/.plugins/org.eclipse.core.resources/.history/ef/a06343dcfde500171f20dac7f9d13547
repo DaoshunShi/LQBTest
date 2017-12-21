@@ -1,0 +1,45 @@
+package algorithm.sort.quicksort;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+//		int[] arr = {25, 84, 21, 47, 15, 27, 68, 35, 20};
+		int[] arr = {42, 51, 40, 38, 39, 47, 56, 52};
+		quickSort(arr, 0, arr.length - 1);
+		
+	}
+	
+	public static int partition(int []array,int lo,int hi){
+        //固定的切分方式
+        int key=array[lo];
+        while(lo<hi){
+            while(array[hi]>=key&&hi>lo){//从后半部分向前扫描
+                hi--;
+            }
+            array[lo]=array[hi];
+            while(array[lo]<=key&&hi>lo){//从前半部分向后扫描
+                lo++;
+            }
+            array[hi]=array[lo];
+        }
+        array[hi]=key;
+        
+        for (int i = 0; i < array.length; i++) {
+        	System.out.print(array[i] + " ");
+        }
+        System.out.println();
+        
+        return hi;
+    }
+    
+    public static void quickSort(int[] array,int lo ,int hi){
+        if(lo>=hi){
+            return ;
+        }
+        int index=partition(array,lo,hi);
+        quickSort(array,lo,index-1);
+        quickSort(array,index+1,hi); 
+    }
+
+}
